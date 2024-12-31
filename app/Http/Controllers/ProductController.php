@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB as DB;
@@ -8,8 +10,7 @@ use Illuminate\Support\Facades\DB as DB;
 class ProductController extends Controller
 {
     public function index(){
-        $products = DB::table('products')->get();
-        dd($products);
+        $products = Product::all();
         return View("products.index");
     }
 
@@ -24,7 +25,9 @@ class ProductController extends Controller
     public function show($product){
         // $product = DB::table('products')->where('id',$product)->get();
         // $product = DB::table('products')->where('id',$product)->first();
-        $product = DB::table('products')->find($product);
+        // $product = DB::table('products')->find($product);
+        $product = Product::findOrFail($product);
+
         dd($product);
         return View("products.show");
     }
