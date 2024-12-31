@@ -1,15 +1,12 @@
 <?php
 
 namespace Database\Factories;
-use App\Models\Product;
+
+use App\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Product>
- */
 class ProductFactory extends Factory
 {
-
     protected $model = Product::class;
 
     /**
@@ -17,14 +14,14 @@ class ProductFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-        'title'=>$this->faker->sentence(3),
-        'description'=>$this->faker->paragraph(1),
-        'price'=>$this->faker->randomFloat($maxDecimal=2,$min=3,$max=100),
-        'stock'=>$this->faker->numberBetween(1,10),
-        'status'=>$this->faker->randomElement(['available','unavailable']),
+            'title' => $this->faker->sentence(3),
+            'description' => $this->faker->text(1000),
+            'price' => $this->faker->randomFloat(2, 1, 100), // Price between 1 and 100
+            'stock' => $this->faker->numberBetween(1, 100),  // Stock between 1 and 100
+            'status' => $this->faker->randomElement(['available', 'unavailable']),
         ];
     }
 }
