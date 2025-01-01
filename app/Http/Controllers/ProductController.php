@@ -22,15 +22,17 @@ class ProductController extends Controller
 
     }
 
-    public function show($product){
-        // $product = DB::table('products')->where('id',$product)->get();
-        // $product = DB::table('products')->where('id',$product)->first();
-        // $product = DB::table('products')->find($product);
-        $product = Product::findOrFail($product);
+    public function show($product)
+    {
+    // Fetch the product using the Eloquent model
+    $product = Product::findOrFail($product);
 
-        dd($product);
-        return View("products.show");
+    $subtitle = '<h1>Something</h1>'; // Example subtitle
+
+    // Pass data to the view using compact
+    return view('products.show', compact('product', 'subtitle'));
     }
+
 
     public function edit($product){
         return "Showing the form to edit the product {$product}";
