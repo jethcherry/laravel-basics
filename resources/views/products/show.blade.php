@@ -1,6 +1,6 @@
 
 @extends('layouts.master')
-@section('coontent')
+@section('content')
     <h1>{{ $product->title ?? 'No Title Available' }} ({{ $product->id ?? 'N/A' }})</h1>
     {{-- {!!$subtitle!!}--}}
     <p>{{ $product->description ?? 'No Description Available' }}</p>
