@@ -11,8 +11,9 @@ class ProductController extends Controller
 {
     public function index(){
         $products = Product::all();
-        return View("products.index");
+        return view('products.index', compact('products'));
     }
+
 
     public function create(){
         return "This is a form to create product from the controller";
@@ -27,7 +28,7 @@ class ProductController extends Controller
     // Fetch the product using the Eloquent model
     $product = Product::findOrFail($product);
 
-    $subtitle = '<h1>Something</h1>'; // Example subtitle
+    // $subtitle = '<h1>Something</h1>'; // Example subtitle
 
     // Pass data to the view using compact
     return view('products.show', compact('product', 'subtitle'));
