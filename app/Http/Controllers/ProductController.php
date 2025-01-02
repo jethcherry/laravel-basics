@@ -16,10 +16,11 @@ class ProductController extends Controller
 
 
     public function create(){
-        return "This is a form to create product from the controller";
+        return View('products.create');
     }
 
     public function store(){
+        dd("In Store");
 
     }
 
