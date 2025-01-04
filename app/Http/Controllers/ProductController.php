@@ -20,8 +20,16 @@ class ProductController extends Controller
     }
 
     public function store(){
-        dd("In Store");
-
+        // dd(request(),request()->title,request()->all());
+        // $product = Product::create([
+        //     'title'=> request()->title,
+        //     'description'=>request()->description,
+        //     'price'=>request()->price,
+        //     'stock'=>request()->stock,
+        //     'status'=>request()->status
+        // ]);
+        $product =Product::create(request()->all());
+        return $product;
     }
 
     public function show($product)
@@ -37,11 +45,14 @@ class ProductController extends Controller
 
 
     public function edit($product){
-        return "Showing the form to edit the product {$product}";
+        return View('products.edit')->with([
+            'product'=>Product::findOrFail($product),
+        ]);
     }
 
     public function update($product){
         return "";
+        dd('In Update');
     }
 
     public function destroy($product){

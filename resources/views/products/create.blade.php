@@ -2,6 +2,7 @@
 @section('content')
     <h1>Create Product</h1>
     <form method="POST" action="{{ route('products.store') }}">
+        @csrf
         <div class="form-row">
             <label>Title</label>
             <input class="form-control" type="text" name="title" required>
