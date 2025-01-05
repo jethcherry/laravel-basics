@@ -32,17 +32,24 @@ class ProductController extends Controller
         return $product;
     }
 
-    public function show($product)
-    {
+    // public function show($product)
+    // {
+    // // Fetch the product using the Eloquent model
+    // $product = Product::findOrFail($product);
+
+    // // $subtitle = '<h1>Something</h1>'; // Example subtitle
+
+    // // Pass data to the view using compact
+    // return view('products.show', compact('product', 'subtitle'));
+    // }
+
+   public function show($product)
+   {
     // Fetch the product using the Eloquent model
     $product = Product::findOrFail($product);
-
-    // $subtitle = '<h1>Something</h1>'; // Example subtitle
-
     // Pass data to the view using compact
-    return view('products.show', compact('product', 'subtitle'));
-    }
-
+    return view('products.show', compact('product'));
+  }
 
     public function edit($product){
         return View('products.edit')->with([
@@ -51,8 +58,9 @@ class ProductController extends Controller
     }
 
     public function update($product){
-        return "";
-        dd('In Update');
+        $product=Product::findOrFail($product);
+        $product->update(request()->all());
+        return $product;
     }
 
     public function destroy($product){

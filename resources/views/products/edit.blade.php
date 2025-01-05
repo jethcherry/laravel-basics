@@ -1,8 +1,9 @@
 @extends('layouts.master')
 @section('content')
     <h1>Edit Product</h1>
-    <form method="POST" action="{{ route('products.store') }}">
+    <form method="POST" action="{{ route('products.update',['product'=>$product->id]) }}">
         @csrf
+        @method('PATCH')
         <div class="form-row">
             <label>Title</label>
             <input class="form-control" type="text" value={{$product->title}} name="title" required>
@@ -30,7 +31,7 @@
             </select>
         </div>
         <div class="form-row">
-           <button class="btn btn-primary btn-lg" type="submit">Create  Product</button>
+           <button class="btn btn-primary btn-lg" type="submit">Update  Product</button>
         </div>
     </form>
 @endsection
