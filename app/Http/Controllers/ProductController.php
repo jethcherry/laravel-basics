@@ -37,6 +37,7 @@ class ProductController extends Controller
         }
         // session()->forget('error');
         $product =Product::create(request()->all());
+        session()->flash('success',"New product with { $product->id } was created ");
 
         return redirect()->route('products.index');
     }
