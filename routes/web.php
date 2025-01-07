@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'welcome'])->name('welcome');
@@ -19,3 +21,7 @@ Route::get('products/{product}/edit',[ProductController::class,"edit"])->name('p
 Route::match(['put', 'patch'], 'products/{product}', [ProductController::class,"update"])->name('products.update');
 
 Route::delete('products/{product}',[ProductController::class,"destroy"])->name('products.destroy');
+
+Auth::routes(); 
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
