@@ -37,8 +37,11 @@ class ProductController extends Controller
         }
         // session()->forget('error');
         $product =Product::create(request()->all());
+        session()->flash( 'success',"New product with { $product->id } was created" );
 
-        return redirect()->route('products.index');
+        return redirect()
+        ->route('products.index')
+        ->withSuccess( "New product with { $product->id } was created " );
     }
 
     // public function show($product)
@@ -81,12 +84,17 @@ class ProductController extends Controller
         $product=Product::findOrFail($product);
         $product->update(request()->all());
         // return redirect()->action([ProductController::class, 'index']);
-        return redirect()->route('products.index');
+        return redirect()
+        ->route('products.index')
+        ->withSuccess( "The product with { $product->id } was updated " );
+        ;
     }
 
     public function destroy($product){
         $product = Product::findOrFail($product);
         $product ->delete();
-        return redirect()->route('products.index');
+        return redirect()
+        ->route('products.index')
+        ->withSuccess( "The product with { $product->id } was removed " );;
     }
 }
